@@ -1,0 +1,68 @@
+<script>
+    let roundCount = 5;
+    let playerInput = "rock";
+
+    function randomNumber(min, max){
+        max++;
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+    
+    function computerPlay(){
+        switch (randomNumber(1, 3)){
+            case 1:
+                return "rock";
+                break;
+            case 2:
+                return "paper";
+                break;
+            case 3:
+                return "scissors";
+                break;
+            default:
+                return "How did you get here?";
+        }
+    }
+
+    function playRound(playerSelection, computerSelection){
+        if (playerSelection == computerSelection){
+            return "You tied! Both of you played " + playerSelection;
+        }
+        switch (playerSelection){
+            case "rock":
+                if (computerSelection == "scissors"){
+                    return "You won! " + playerSelection[0].toUpperCase() + playerSelection.substring(1) + " beats " + computerSelection;
+                }
+                else{
+                    return "You lost! " + computerSelection[0].toUpperCase() + computerSelection.substring(1) + " beats " + playerSelection;
+                }
+                break;
+            case "paper":
+                if (computerSelection == "rock"){
+                    return "You won! " + playerSelection[0].toUpperCase() + playerSelection.substring(1) + " beats " + computerSelection;
+                }
+                else{
+                    return "You lost! " + computerSelection[0].toUpperCase() + computerSelection.substring(1) + " beats " + playerSelection;
+                }
+                break;
+            case "scissors":
+                if (computerSelection == "paper"){
+                    return "You won! " + playerSelection[0].toUpperCase() + playerSelection.substring(1) + " beats " + computerSelection;
+                }
+                else{
+                    return "You lost! " + computerSelection[0].toUpperCase() + computerSelection.substring(1) + " beats " + playerSelection;
+                }
+                break;
+        }
+    }
+
+    function game(){
+        let x = 1;
+        
+        while (x <= roundCount)
+        {
+            playerInput = prompt();
+            console.log(playRound(playerInput.toLowerCase(), computerPlay()));
+            x++;
+        }
+    }
+</script>
